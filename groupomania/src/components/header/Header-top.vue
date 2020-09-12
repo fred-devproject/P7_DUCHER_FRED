@@ -12,7 +12,7 @@
 
 import Navbar from '../../components/navbar/Navbar.vue'
 export default {
-    name: 'Headblock',
+    name: 'Header-top',
     components: {
         'navbar': Navbar,
     }
