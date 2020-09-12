@@ -3,7 +3,7 @@
         <navbar></navbar>
         <div>        
             <img  class="img-responsive head__banner" src="../../assets/banner.png" alt="">        
-            <h2 class="head__subtitle text-center">Bienvenue sur votre espace de partage</h2>
+            <p class="head__subtitle text-center">Bienvenue sur votre espace de partage</p>
         </div>       
     </div>
 </template>
