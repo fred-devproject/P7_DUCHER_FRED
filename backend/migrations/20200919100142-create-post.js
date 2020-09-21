@@ -16,18 +16,21 @@ module.exports = {
           key:'id'
         }
       },
-      posttitle: {
+      title: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      posttext: {
+      text: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      postattachment: {
+      attachment: {
         type: Sequelize.STRING
       },
-      postlikes: {
+      likes: {
+        type: Sequelize.INTEGER
+      },
+      dislikes: {
         type: Sequelize.INTEGER
       },
       createdAt: {
