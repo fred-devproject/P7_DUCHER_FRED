@@ -1,8 +1,8 @@
 <template>
-    <div class="container-fluid foot__style">
-        <div class="row no-padding d-flex justify-content-between bg-light border h-50">        
-            <p class="footer__text text-info my-auto ml-3">Designed with <strong>Bootstrap</strong></p>
-            <p class="footer__text my-auto text-info mr-3"><strong>Mentions légales</strong></p>
+    <div class="container-fluid fixed-bottom foot__style">
+        <div class="row no-padding justify-content-between bg-light border">        
+            <p class="footer__text text-info my-auto ml-5 pt-4 pb-4">Designed with <strong>Bootstrap</strong></p>
+            <p class="footer__text my-auto text-info mr-5 pt-4 pb-4"><strong>Mentions légales</strong></p>
             
             
         </div>       
