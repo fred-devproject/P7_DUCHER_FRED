@@ -3,5 +3,21 @@
 }
 .navbar__text {
 
-    font-size: 25px;
+    font-size: 1.2em;
+}
+
+@media (max-width: 575.98px) {
+    .navbar__logo {
+        width: 50%
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .navbar__logo {
+        width: 45%
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .navbar__logo {
+        width: 30%
+    }
 }
