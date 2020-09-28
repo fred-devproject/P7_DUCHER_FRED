@@ -1,7 +1,7 @@
 // Imports
 
 const express = require('express');
-const usersCtrl = require('./routes/usersCtrl');
+const usersCtrl = require('./controllers/usersCtrl');
 
 //Router
 exports.router = (function() {
@@ -11,7 +11,8 @@ exports.router = (function() {
     apiRouter.route('/users/register/').post(usersCtrl.register);
     apiRouter.route('/users/login/').post(usersCtrl.login);
     apiRouter.route('/users/profil/').get(usersCtrl.getUserProfil);
-    //apiRouter.route('/users/profil/').put(usersCtrl.updateUserProfil);
+    apiRouter.route('/users/update/').put(usersCtrl.updatePassword);
+    apiRouter.route('/users/delete/').delete(usersCtrl.deleteUser);
 
     return apiRouter;
 })();
