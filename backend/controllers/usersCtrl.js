@@ -120,8 +120,8 @@ module.exports = {
     //Affichage du profil utilisateur
     getUserProfil: function(req, res) {
         // Getting auth header
-        var headerAuth  = req.headers['authorization'];
-        var userId      = jwtUtils.getUserId(headerAuth);
+        let headerAuth  = req.headers['authorization'];
+        let userId      = jwtUtils.getUserId(headerAuth);
     
         if (userId < 0)
           return res.status(400).json({ 'error': 'Token invalide' });
@@ -140,29 +140,59 @@ module.exports = {
         });
     },
 
-    //Modification des informations utilisateur
-    updateUserProfil: function(req, res) {
-        // Getting auth header
-        const headerAuth  = req.headers['authorization'];
-        const userId      = jwtUtils.getUserId(headerAuth);
-    
-        // Params
-        let username = req.body.username;
-            
-        models.User.findOne({
-            attributes: ['id',],
-            where: { id: userId }
-        }).then(function (userFound) {
-            if(userFound) {
-                userFound.update({                    
-                    username: (username ? username : userFound.username)                    
-                }) 
-            } else {
-                res.status(404).json({ 'error': 'Utilisateur non trouvé' });
-            }
-        }).catch(function(err) {
-            return res.status(500).json({ 'error': 'Impossible de vérifier l\'utilisateur' });
-        });
-    }
+    updatePassword: function(req, res) {
+        let headerAuth  = req.headers['authorization'];
+        let userId = jwtUtils.getUserId(headerAuth);
+        const newPassword = req.body.newPassword;
+        console.log(newPassword)
+        //Vérification regex du nouveau mot de passe
+        if (!PASSWORD_REGEX.test(newPassword)) {
+            return res.status(400).json({ 'erreur': 'mot de passe invalide'})
+        } else {
+            models.User.findOne({
+            where: { id: userId }            
+            }).then(user => {                
+                bcrypt.compare(newPassword, user.password, (errComparePassword, resComparePassword) => {
+                    //bcrypt compare le nouveau mot de passe avec l'ancien: avertissement si ils sont identiques
+                    if (resComparePassword) {
+                        res.status(406).json({ error: 'Vous avez entré le même mot de passe' })
+                    } else {
+                        bcrypt.hash(newPassword, 10, function (err, bcryptNewPassword) {
+                            models.User.update(
+                                { password: bcryptNewPassword },
+                                { where: { id: user.id } }
+                            )
+                            .then(() => res.status(201).json({ confirmation: 'mot de passe modifié avec succès' }))
+                            .catch(err => res.status(500).json(err))
+                        })
+                    }
+                })
+            })
+            .catch(err => json(err))
+        } 
+    },
 
+    deleteUser: function(req,res) {
+        // Getting auth header
+        let headerAuth  = req.headers['authorization'];
+        let userId = jwtUtils.getUserId(headerAuth);
+        if (userId < 0) {
+            return res.status(400).json({ 'error': 'Vous n\'avez pas l\'autorisation pour supprimer ce compte' });
+        } else if (userId != null) {            
+            models.User.findOne({
+                where: { id: userId }            
+            })
+            .then( user =>{
+                models.User
+                .destroy({
+                    where: { id: user.id }
+                })
+                .then(() => res.end())
+                .catch(err =>console.log(err))
+            })
+            .catch(err => res.status(500).json(err))
+        } else {
+            res.status(500).json({ "erreur": 'Suppression de ce compte impossible' })
+        }
+    }
 }
