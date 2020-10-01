@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-center">
         <div class="card col-md-6 bg-light register__box">            
-            <h1 class="text-info text-center mt-3 font-weight-light">Créer un compte</h1>                            
+            <h2 class="text-info text-center mt-3 font-weight-light">Créer un compte</h2>                            
             <form method="POST" id="formValid" ref="formValid" class="needs-validation text-left">
                 <div class="w-75 mr-auto ml-auto mt-3 text-info">                    
                     <label for="username" ><b>Nom d'utilisateur</b></label>
@@ -37,6 +37,7 @@
 <script>
 
 import axios from 'axios'
+import { mapState } from "vuex";
 
 export default {
     name: 'signup',
@@ -54,6 +55,9 @@ export default {
         }            
             
     },
+    computed: {
+        ...mapState(["user"])
+    },
     methods: {
         submitForm () {
             
@@ -66,7 +70,7 @@ export default {
                 this.userSignup.email = null;
                 this.userSignup.password = null;
                 this.showSubmitBtn = false;
-                setTimeout(()=>{this.$router.push('Login')}, 2000);
+                this.$router.push('/login');
             })
             .catch(error => console.log(error, 'erreur de connection'));
             },

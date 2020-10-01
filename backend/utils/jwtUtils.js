@@ -29,7 +29,7 @@ module.exports = {
           let jwtToken = jwt.verify(token, AUTH_TOKEN);
           if(jwtToken != null)
             userId = jwtToken.userId;
-        } catch(err) { }
+        } catch(err) {}
       }
       return userId;
     }

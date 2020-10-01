@@ -12,7 +12,8 @@ a {
 }
 
 a:hover {
-    color: grey;
+    color: rgb(11, 154, 197);
+    text-decoration: none;
 }
 
 .main {
