@@ -1,6 +1,5 @@
 // Imports
 const bcrypt = require('bcrypt');
-const asyncLib = require('async');
 const jwtUtils = require('../utils/jwtUtils');
 const models = require('../models');
 
@@ -9,7 +8,7 @@ const models = require('../models');
 const EMAIL_REGEX = /[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const PASSWORD_REGEX = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
-//Routes
+// Controllers
 module.exports = {
     //Enregistrement d'un nouvel utilisateur
     register: function(req, res){
@@ -113,7 +112,7 @@ module.exports = {
             }
         })
         .catch(function(err){
-            return res.status(500).json({ 'Erreur': 'Impossible de verifier l\'utilisateur'})
+            return res.status(500).json({ 'erreur': 'Impossible de verifier l\'utilisateur'})
         })
     },
 
@@ -141,10 +140,12 @@ module.exports = {
     },
 
     updatePassword: function(req, res) {
+        //Getting auth header
         let headerAuth  = req.headers['authorization'];
         let userId = jwtUtils.getUserId(headerAuth);
+
         const newPassword = req.body.newPassword;
-        console.log(newPassword)
+        
         //Vérification regex du nouveau mot de passe
         if (!PASSWORD_REGEX.test(newPassword)) {
             return res.status(400).json({ 'erreur': 'mot de passe invalide'})
@@ -152,7 +153,7 @@ module.exports = {
             models.User.findOne({
             where: { id: userId }            
             }).then(user => {                
-                bcrypt.compare(newPassword, user.password, (errComparePassword, resComparePassword) => {
+                bcrypt.compare(newPassword, user.password, (resComparePassword) => {
                     //bcrypt compare le nouveau mot de passe avec l'ancien: avertissement si ils sont identiques
                     if (resComparePassword) {
                         res.status(406).json({ error: 'Vous avez entré le même mot de passe' })
@@ -176,6 +177,7 @@ module.exports = {
         // Getting auth header
         let headerAuth  = req.headers['authorization'];
         let userId = jwtUtils.getUserId(headerAuth);
+
         if (userId < 0) {
             return res.status(400).json({ 'error': 'Vous n\'avez pas l\'autorisation pour supprimer ce compte' });
         } else if (userId != null) {            

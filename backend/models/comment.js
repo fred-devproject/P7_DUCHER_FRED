@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      /* Probleme avec ces associations a voir !!!
       models.User.belongsToMany(models.Message, {
         through: models.Comment,
         foreignKey: 'userId',
@@ -22,17 +23,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'messageId',
         otherKey: 'userId',
       });
-
+      */
+     
       models.Comment.belongsTo(models.User, {
         foreignKey: 'userId',
-        as: 'user',
+        as: 'User',
         allowNull: false
         
       });
 
       models.Comment.belongsTo(models.Message, {
         foreignKey: 'messageid',
-        as: 'message', 
+        as: 'Message', 
         allowNull: false
         
       });

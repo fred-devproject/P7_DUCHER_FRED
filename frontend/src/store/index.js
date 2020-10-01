@@ -7,52 +7,51 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      username: 'Nc',
-      userId: 'Nc',
-      email: 'Nc',
+      username: '',
+      userId: '',
+      email: '',
       token: null,
-      isAdmin: false
+      isadmin: false
     },
-    editOption: ""
+    editedMsg: ""
   },
 
   mutations: {
     // on sauvegarde les infos des user dans les champs
-    saveUserInfos(state, [username, userId, email, isAdmin]) {
-        state.user.username = username,
+    saveUserInfos(state, [username, userId, email, isadmin]) {
+          state.user.username = username,
           state.user.userId = userId,
           state.user.email = email,
-          state.user.token = localStorage.getItem('token'),
-          state.user.isAdmin = isAdmin
+          state.user.token = localStorage.getItem("token");
+          state.user.isadmin = isadmin
     },
+
     
-    editStyle(state, value) {
-      state.editOption = value
+    editMessage(state, value) {
+      state.editedMsg = value
     }
   },
 
   actions: {
     // requête pour modifier les données de l'user
-    getUserInfos(context) {
-      axios
-        .get("http://localhost:3000/api/users/userInfos", {
-          // on verifie si l'user à une autorisation : TOKEN valide ...
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
-        .then(response => {
-          console.log('réponse API',response);
-          //... si oui on remplace les données précédentes par les nouvelles
-          context.commit('saveUserInfos',[response.data.username, response.data.id, response.data.email, response.data.isAdmin])
-        })
-        .catch(error => {
-          console.log('Erreur auth', error);
-        });
+    getUserInfos(context) {      
+        axios
+          .get("http://localhost:3000/api/users/profil", {
+            // on verifie si l'user à une autorisation : TOKEN valide ...
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+            }
+          })                  
+          .then(response => {
+            context.commit('saveUserInfos',[response.data.username, response.data.id, response.data.email, response.data.isadmin])
+          })
+          .catch(error => {
+            console.log('Erreur auth', error);
+          });        
     },
   
-    changeEditStyle(context, value){
-      context.commit('editStyle',value)
+    changeEditMessage(context, value){
+      context.commit('editMessage',value)
     }
     
   },
