@@ -13,7 +13,6 @@ export default new Vuex.Store({
       token: null,
       isadmin: false
     },
-    editedMsg: ""
   },
 
   mutations: {
@@ -24,12 +23,7 @@ export default new Vuex.Store({
           state.user.email = email,
           state.user.token = localStorage.getItem("token");
           state.user.isadmin = isadmin
-    },
-
-    
-    editMessage(state, value) {
-      state.editedMsg = value
-    }
+    },    
   },
 
   actions: {
@@ -48,13 +42,6 @@ export default new Vuex.Store({
           .catch(error => {
             console.log('Erreur auth', error);
           });        
-    },
-  
-    changeEditMessage(context, value){
-      context.commit('editMessage',value)
-    }
-    
+    },    
   },
-  modules: {
-  }
 })

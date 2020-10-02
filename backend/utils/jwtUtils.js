@@ -1,8 +1,9 @@
 // Imports
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 //TO DO require('dotenv').config();
-const AUTH_TOKEN = 'QB-z$DIH26_kfuq2DzYDf9v7';
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
 
 

@@ -69,7 +69,7 @@ module.exports = {
       // lister tous les messages
       listMessages: function(req, res) {        
         models.Message.findAll({
-          order: [['createdAt', 'DESC']],
+          order: [['updatedAt', 'DESC']],
           include:[{
             model: models.User,
             attributes: ['Username', 'id']
@@ -115,7 +115,7 @@ module.exports = {
             where: { id: userId }
         })
         .then(user => {
-          //Vérification que le demandeur est soit l'admin soit le poster (vérif aussi sur le front)
+          //Vérification pour supprimer il faut etre admin ou à l'origine du message
           if (user && (user.isAdmin == true || user.id == userId)) {
               console.log('Suppression du post id :', req.params.id);
               models.Message
@@ -148,7 +148,7 @@ module.exports = {
             where: { id: userId }
         })
         .then(user => {
-          //Vérification que le demandeur est soit l'admin soit le poster (vérif aussi sur le front)
+          //Vérification pour supprimer il faut etre admin ou à l'origine du message
           if (user && (user.isAdmin == true || user.id == userId)) {
               console.log('Modification du post id :', req.params.id);
               models.Message
@@ -159,7 +159,7 @@ module.exports = {
                     models.Message
                         .update({
                             title: req.body.newTitle,
-                            content: req.body.newText,                            
+                            content: req.body.newContent,                            
                           },
                             {where: { id: messageFind.id }}
                         )
