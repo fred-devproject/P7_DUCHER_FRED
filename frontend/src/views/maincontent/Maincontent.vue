@@ -1,11 +1,14 @@
 <template>
     <div id:="main-content" class="row justify-content-center"> 
-        <div class="card col-md-8 ml-3 mr-3 bg-light main" >
-            <h3 class="main__title text-info mt-4 ml-3 font-weight-normal">Les messages !</h3>        
+        <div class="card col-md-8 ml-4 mr-4 bg-light main" >
+            <h3 class="main__title text-info text-center mt-4 font-weight-normal">Les messages !</h3>  
+            <hr>      
+            <div class="d-flex justify-content-end mr-3">            
             <router-link :to="`/newpost`">
-                <div class="btn btn-outline-info main__postbtn" v-if="user.token != null">Poster un message</div>
-            </router-link>
-            <div>
+                <button class="btn btn-success main__postbtn mt-3 mr-4" v-if="user.token != null">Poster</button>
+            </router-link> 
+            </div>           
+            <div >
                 <ul>                
                     <li v-bind:key="index" v-for="(post, index) in lastPost" class="main__post">
                         <router-link :to="`/post/${post.id}`">
@@ -16,6 +19,7 @@
                                     <p class="ml-3 mr-2 mb-2 mt-2 w-50"><b class="text-secondary">Auteur:&nbsp;&nbsp;</b><i>{{ post.User.Username }}</i></p>
                                     <p class="ml-2 mr-5 mb-2 mt-2 text-right w-50"><b class="text-secondary">Posté le:&nbsp;&nbsp;</b> <i>{{ post.updatedAt.slice(0, 10) }}</i></p>
                                 </div>
+                                <hr>
                                 <p class="ml-3 mr-2 mb-2 mt-2">{{ post.content.slice(0, 100) }}...</p>
                             </div>
                         </router-link>

@@ -4,6 +4,7 @@ import Signup from './views/signup/Signup'
 import Login from './views/login/Login'
 import Profil from './views/profil/Profil'
 import Newpost from './views/newpost/Newpost'
+import Mentions from './views/mentions/Mentions'
 
 
 export default [
@@ -13,4 +14,5 @@ export default [
     {path: '/login', component: Login},
     {path: '/profil', component: Profil},
     {path: '/newpost', component: Newpost},
+    {path: '/mentions', component: Mentions},
 ]

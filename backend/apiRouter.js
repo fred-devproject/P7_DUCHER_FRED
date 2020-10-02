@@ -20,6 +20,7 @@ exports.router = (function() {
     apiRouter.route('/messages/').get(messagesCtrl.listMessages);
     apiRouter.route('/messages/:id/').get(messagesCtrl.oneMessage);
     apiRouter.route('/messages/delete/:id').delete(messagesCtrl.deleteMessage);
+    apiRouter.route('/messages/update/').put(messagesCtrl.updateMessage);
 
     return apiRouter;
 })();

@@ -1,41 +1,50 @@
 <template>
     <div class="row justify-content-center">
-        <p class="alert alert-danger w-75 mr-auto ml-auto mt-3 text-center" ><b>Vous n'avez pas l'autorisation de supprimer ce message<br> Vous allez être redirigé vers la page d'accueil</b></p>
-        <div class="card col-md-8 ml-3 mr-3 bg-light bloc-onepost" >
-            
-            <div class="d-flex justify-content-between">
-                <h4 class="ml-3 mr-2 mb-1 mt-3 ">{{ onePost.title }}</h4>
-                <div class="">
-                    <button 
-                        type="button" 
-                        class="btn btn-info btn-sm mb-3 mt-3 mr-2 edit__btn" 
-                        v-if="user.isadmin == true || onePost.userId == user.userId">
-                        Editer
-                    </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-danger btn-sm mb-3 mt-3 mr-2 delete__btn" 
-                        v-if="user.isadmin == true || onePost.userId == user.userId"
-                        v-on:click="deletePost()">
-                        Supprimer
-                    </button>
-                </div>
-            </div>
-            <hr>
-            <div class="d-flex">
-                <p class="ml-3 mr-2 mb-2 mt-2 w-50"><b class="text-secondary">Auteur:&nbsp;&nbsp;</b><i>{{ onePost.User.username }}</i></p>
-                <p class="ml-2 mr-5 mb-2 mt-2 text-right w-50"><b class="text-secondary">Posté le:&nbsp;&nbsp;</b> <i>{{ onePost.updatedAt.slice(0, 10) }}</i></p>
-            </div>            
-            <p class="ml-3 mr-2 mb-2 mt-2" >{{ this.onePost.content }}</p>            
-            <div class="btn__bloc justify-content-end">
+        <div class="col-md-8 mb- 3 btn__bloc justify-content-center">
                 <router-link :to="`/`">
                     <button 
                         type="button" 
-                        class="btn btn-outline-info btn-sm mb-3 mt-3 mr-2 edit__btn">
+                        class="btn btn-info btn-sm mb-3 mt-3 mr-2 edit__btn">
                         revenir à l'accueil
                     </button>
                 </router-link>
             </div>
+        <div class="card col-md-8 ml-4 mr-4 bg-light bloc-onepost">            
+                <h4 class="ml-3 mr-2 mb-1 mt-3 text-center">{{ onePost.title }}</h4>                            
+            <hr>
+            <div class="d-flex">
+                <p class="ml-3 mr-2 mb-2 mt-2 w-50"><b class="text-secondary">Auteur:&nbsp;&nbsp;</b><i>{{ onePost.User.username }}</i></p>
+                <p class="ml-2 mr-5 mb-2 mt-2 text-right w-50"><b class="text-secondary">Posté le:&nbsp;&nbsp;</b> <i>{{ onePost.updatedAt.slice(0, 10) }}</i></p>
+            </div> 
+            <hr>           
+            <p class="ml-3 mr-2 mb-2 mt-2" >{{ this.onePost.content }}</p>
+            <hr v-if="user.isadmin == true || onePost.userId == user.userId">
+            <div class="d-flex justify-content-between">
+                <button 
+                    type="button" 
+                    class="btn btn-info btn-sm mb-3 mt-3 mr-2 edit__btn" 
+                    v-if="user.isadmin == true || onePost.userId == user.userId">
+                    Editer le message
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-danger btn-sm mb-3 mt-3 mr-2 delete__btn" 
+                    v-if="user.isadmin == true || onePost.userId == user.userId"
+                    data-toggle="collapse" 
+                    href="#deleteMsgCollapse" 
+                    role="button" 
+                    aria-expanded="false" 
+                    aria-controls="deleteMsgCollapse"
+                    >
+                    Supprimer
+                </button>  
+            </div> 
+            <div class="collapse" id="deleteMsgCollapse">
+                <p class="alert alert-danger mr-auto ml-auto text-center"><b>Confirmer la suppression ?</b><br></p>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger btn-sm mt-3 mb-3" v-on:click.prevent="deletePost()">Confirmer</button>
+                </div>
+            </div>            
         </div>
     </div> 
 </template>
@@ -50,9 +59,10 @@ export default {
     data(){
         return {
             id: this.$route.params.id,
+
             editOptions: false,
             deleteOptions: false,
-            noDelete:false,
+
             onePost: {
                 id:"",
                 title: "",
@@ -61,6 +71,7 @@ export default {
                 User:"",
                 updatedAt:""
             },
+            
         }
     },
     computed: {
@@ -71,7 +82,7 @@ export default {
         axios
         .get(`http://localhost:3000/api/messages/${this.id}`, {
         headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
+            Authorization: "Bearer " + localStorage.token
         }
         })
         .then(response => {
@@ -82,26 +93,20 @@ export default {
     },
     methods: {
         deletePost() {
-            if( this.user.isadmin == true || this.onePost.userId == this.user.userId) {
-                axios
-                    .delete(`http://localhost:3000/api/messages/delete/${this.id}`, {
-                        headers: {
-                            Authorization: "Bearer " + localStorage.getItem("token")
-                        },
-                    }) 
-                    .then(() => {
-                        location.replace(location.origin)
-                    }) 
-                    .catch(error => console.log(error));
-            } else {
-                setTimeout(()=> {this.noDelete = !this.noDelete}, 3000);
-                location.replace(location.origin)
-            }
+                        
+            axios
+                .delete(`http://localhost:3000/api/messages/delete/${this.id}`, {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.token
+                    }, 
+                })
+                
+                .then(() => {
+                    location.replace(location.origin)
+                }) 
+                .catch(error => console.log(error));            
         },
-
-    }
-   
-    
+    }    
 }
 </script>
 

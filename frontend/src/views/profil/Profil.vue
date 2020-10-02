@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-content-center">
-        <div class="card col-md-8 bg-light text-center profil__box mb-5">
+        <div class="card col-md-8 bg-light text-center profil__box ml-4 mr-4 mb-5">
             <h3 class="text-info mt-3 mb-3">Votre profil</h3>
             
             <div v-if="user.isadmin==true" class="alert alert-info w-75 m-auto">Vous disposez de droits administrateur</div>
