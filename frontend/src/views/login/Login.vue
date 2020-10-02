@@ -1,6 +1,15 @@
 <template>
     <div class="row justify-content-center mb-5">
-        <div class="card col-md-6 bg-light login__box mb-5">            
+        <div class="col-md-8 mb- 3 btn__bloc justify-content-left">
+            <router-link :to="`/`">
+                <button 
+                    type="button" 
+                    class="btn btn-outline-info btn-sm mb-3 mt-3 ml-2 edit__btn">
+                    revenir à l'accueil
+                </button>
+            </router-link>
+        </div>
+        <div class="card col-md-8 bg-light login__box mb-5 ml-4 mr-4">            
             <h2 class="text-info text-center mt-3 font-weight-light">Me connecter</h2>                            
             <form method="POST" id="formValid" ref="formValid" class="needs-validation text-left">
                 <div class="w-75 mr-auto ml-auto mt-3 text-info">  

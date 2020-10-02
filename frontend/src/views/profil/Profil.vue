@@ -1,5 +1,14 @@
 <template>
     <div class="row justify-content-center">
+        <div class="col-md-8 mb- 3 btn__bloc justify-content-left">
+            <router-link :to="`/`">
+                <button 
+                    type="button" 
+                    class="btn btn-outline-info btn-sm mb-3 mt-3 ml-2 edit__btn">
+                    revenir à l'accueil
+                </button>
+            </router-link>
+        </div>
         <div class="card col-md-8 bg-light text-center profil__box ml-4 mr-4 mb-5">
             <h3 class="text-info mt-3 mb-3">Votre profil</h3>
             

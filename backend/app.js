@@ -5,7 +5,6 @@ const express = require('express');
 const helmet = require("helmet");
 const bodyParser = require('body-parser');
 const cors = require('cors');
-//const path = require('path');
 const apiRouter = require('./apiRouter').router;
 
 const app = express();
@@ -30,8 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Chemins d'accès des différents endpoints
-//app.use('/images', express.static(path.join(__dirname, 'images')));
-
 app.use('/api', apiRouter);
 
 

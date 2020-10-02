@@ -17,7 +17,7 @@
                                 <hr>
                                 <div class="d-flex">
                                     <p class="ml-3 mr-2 mb-2 mt-2 w-50"><b class="text-secondary">Auteur:&nbsp;&nbsp;</b><i>{{ post.User.Username }}</i></p>
-                                    <p class="ml-2 mr-5 mb-2 mt-2 text-right w-50"><b class="text-secondary">Posté le:&nbsp;&nbsp;</b> <i>{{ post.updatedAt.slice(0, 10) }}</i></p>
+                                    <p class="ml-2 mr-5 mb-2 mt-2 text-right w-50"><b class="text-secondary">Mis à jour:&nbsp;&nbsp;</b> <i>{{ post.updatedAt.slice(0, 10) }}</i></p>
                                 </div>
                                 <hr>
                                 <p class="ml-3 mr-2 mb-2 mt-2">{{ post.content.slice(0, 100) }}...</p>
