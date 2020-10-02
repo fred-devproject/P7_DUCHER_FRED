@@ -104,15 +104,71 @@ module.exports = {
         });
       },
 
-      deleteMessage: function(req, res) {        
-          models.Message.findOne({
-              where : { id : req.params.id }
-          })
-          .then(function(deleted) {                                      
-              models.Message.destroy({ where : { id: req.params.id } });
-              res.status(201).json(deleted);
-          })                                 
-          .catch(error => res.status(400).json({ error }));                
-      }
-        
+      deleteMessage: function(req, res) {
+
+        // Getting auth header
+        let headerAuth  = req.headers['authorization'];
+        let userId      = jwtUtils.getUserId(headerAuth);
+        console.log(userId);
+        models.User.findOne({
+            attributes: ['id', 'isadmin'],
+            where: { id: userId }
+        })
+        .then(user => {
+          //Vérification que le demandeur est soit l'admin soit le poster (vérif aussi sur le front)
+          if (user && (user.isAdmin == true || user.id == userId)) {
+              console.log('Suppression du post id :', req.params.id);
+              models.Message
+                  .findOne({
+                      where: { id: req.params.id }
+                  })
+                  .then((messageFind) => {                      
+                    models.Message
+                        .destroy({
+                            where: { id: messageFind.id }
+                        })
+                        .then(() => res.end())
+                        .catch(err => res.status(500).json(err))                      
+                  })
+                  .catch(err => res.status(500).json(err))
+          } else { res.status(403).json('Utilisateur non autorisé à supprimer ce post') }
+        })
+        .catch(error => res.status(500).json(error));                     
+      },
+
+      // Modification d'un message
+      updateMessage: function(req, res) {
+
+        // Getting auth header
+        let headerAuth  = req.headers['authorization'];
+        let userId      = jwtUtils.getUserId(headerAuth);
+        console.log(userId);
+        models.User.findOne({
+            attributes: ['id', 'isadmin'],
+            where: { id: userId }
+        })
+        .then(user => {
+          //Vérification que le demandeur est soit l'admin soit le poster (vérif aussi sur le front)
+          if (user && (user.isAdmin == true || user.id == userId)) {
+              console.log('Modification du post id :', req.params.id);
+              models.Message
+                  .findOne({
+                      where: { id: req.params.id }
+                  })
+                  .then((messageFind) => {                      
+                    models.Message
+                        .update({
+                            title: req.body.newTitle,
+                            content: req.body.newText,                            
+                          },
+                            {where: { id: messageFind.id }}
+                        )
+                        .then(() => res.end())
+                        .catch(err => res.status(500).json(err))                      
+                  })
+                  .catch(err => res.status(500).json(err))
+          } else { res.status(403).json('Utilisateur non autorisé à editer ce post') }
+        })
+        .catch(error => res.status(500).json(error));                     
+      },
 }
