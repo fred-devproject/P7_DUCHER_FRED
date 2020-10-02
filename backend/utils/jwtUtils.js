@@ -2,10 +2,8 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-//TO DO require('dotenv').config();
+//Utilisation de dotenv pour masquer la chaine de caractère jwt
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
-
-
 
 //Exported functions
 module.exports = {

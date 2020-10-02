@@ -11,6 +11,7 @@ const app = express();
 
 // utilisation du module 'helmet' 
 app.use(helmet());
+// utilisation du module 'cors'
 app.use(cors());
   
 // Setting du header des requêtes pour la gestion des erreurs CORS
