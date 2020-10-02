@@ -10,7 +10,7 @@
 ---
 ## :clipboard: DOCUMENTS DE PRESENTATION.
 
-* Document de presentation : [Document de presentation](a venir)
+* Document de presentation : [Document de presentation](https://docs.google.com/document/d/1R92whnUZhVOx3VjVu339KiKVO51KhjnxRlRwCMj-yJg/edit?usp=sharing)
 * Diagramme de fonctionnement : [Architecture de l'application](https://drive.google.com/file/d/1aDGWIMnIU32-ito07VZYGb0Vac0wljfL/view?usp=sharing)
 * Diagramme de UML : [Architecture de la base MySQL](https://drive.google.com/file/d/1c0JMPPTCUPIcksLSxnptGqlzfHVk_J3L/view?usp=sharing)
 ---
