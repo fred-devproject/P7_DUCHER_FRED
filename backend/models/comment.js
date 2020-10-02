@@ -1,4 +1,5 @@
 'use strict';
+// MODULE COMMENTAIRES EN COURS DE DEVELOPPEMENT
 const {
   Model
 } = require('sequelize');

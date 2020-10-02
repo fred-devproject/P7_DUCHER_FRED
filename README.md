@@ -18,6 +18,7 @@
 ## :gear: INITIALISATION DU PROJET
 
 * Cloner la branche "master" de ce dépôt github sur votre :computer:
+* Installer MySQL
 * Lancer la commande `npm run serve` dans le terminal depuis le dossier :file_folder: `frontend`.
 * Coller le fichier `.env` préalablement fourni dans le dossier Backend
 * Lancer la commande `nodemon server` dans le terminal depuis le dossier :file_folder: `backend`.

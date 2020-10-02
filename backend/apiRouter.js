@@ -1,5 +1,4 @@
 // Imports
-
 const express = require('express');
 const usersCtrl = require('./controllers/usersCtrl');
 const messagesCtrl = require('./controllers/messagesCtrl');

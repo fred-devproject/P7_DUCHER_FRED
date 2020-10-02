@@ -33,8 +33,6 @@ module.exports = {
         if (!PASSWORD_REGEX.test(password)) {
             return res.status(400).json({ 'erreur': 'mot de passe invalide'})
         }
-
-        //TODO verifier pseudo length, mail regex, password regex.
         
         models.User.findOne({
             attributes: ['email'],
@@ -139,6 +137,7 @@ module.exports = {
         });
     },
 
+    // Mise à jour du mot de passe utilisateur
     updatePassword: function(req, res) {
         //Getting auth header
         let headerAuth  = req.headers['authorization'];
@@ -173,6 +172,7 @@ module.exports = {
         } 
     },
 
+    // suppression d'un utilisateur
     deleteUser: function(req,res) {
         // Getting auth header
         let headerAuth  = req.headers['authorization'];
