@@ -1,9 +1,9 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="card col-md-8 ml-3 mr-3 bg-light bloc-newpost">
-            <h2 class="text-info text-center mt-3 font-weight-light">Poster un nouveaux message</h2>
+    <main class="row justify-content-center no-gutters">
+        <section class="card col-md-8 ml-3 mr-3 bg-light bloc-newpost">
+            <h2 class="text-dark text-center mt-3 font-weight-light">Poster un nouveau message</h2>
             <form method="POST" id="formValid" ref="formValid" class="needs-validation text-left">
-                <div class="w-75 mr-auto ml-auto mt-3 text-info">                    
+                <div class="w-75 mr-auto ml-auto mt-3 text-dark">                    
                     <label for="title" ><b>Titre</b></label>
                     <input type="text" class="form-control mb-3" id="title" placeholder="Votre titre"  v-model="post.title" minlength="3" maxlength="50" required>
                                                         
@@ -11,12 +11,12 @@
                     <textarea type="text" class="form-control mb-4" rows="6" id="content" placeholder="Votre message" v-model="post.content" minlength="3" maxlength="1000" required></textarea>
 
                     <div class="text-center">
-                        <button class="btn btn-success btn-sm mb-4 " type="submit" v-on:click.prevent="submitPost()">Envoyer !</button>                        
+                        <button class="btn btn-success btn-md mb-4 " type="submit" v-on:click.prevent="submitPost()">Envoyer !</button>                        
                     </div>
                 </div>    
             </form>            
-        </div>
-    </div> 
+        </section>
+    </main> 
 </template>
 
 <script>

@@ -1,7 +1,16 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="card col-md-8 ml-4 mr-4 bg-light text-center bloc-mentions">
-            <h3 class="text-info mt-3">Mention légales</h3>
+    <main class="row justify-content-center no-gutters">
+        <nav class="col-md-8 mb- 3 btn__bloc justify-content-left">
+            <router-link :to="`/`">
+                <button 
+                    type="button" 
+                    class="btn btn-outline-dark btn-md mb-3 mt-3 ml-2 edit__btn">
+                    revenir à l'accueil
+                </button>
+            </router-link>
+        </nav>
+        <section class="card col-md-8 ml-4 mr-4 bg-light text-center bloc-mentions">
+            <h3 class="text-dark mt-3">Mention légales</h3>
             <hr>
             <p>En vigueur au 01/10/2020</p>
             <p class="mr-2 ml-2">Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie
@@ -11,7 +20,7 @@
                 Ces dernières sont accessibles sur le site à la rubrique « Mentions légales ».
             </p>
             <article class="mr-2 ml-2 mt-2">
-                <h4 class="text-info">ARTICLE 1: L'EDITEUR</h4>
+                <h4 class="text-dark">ARTICLE 1: L'EDITEUR</h4>
                 <p >L'édition du site Groupomania.com est assurée par la Société SARL Groupomania au capital de 1 000 000 000 euros, immatriculée au RCS de
                     Los angeles sous le numéro 123987456321 dont le siège social est situé au 12 Avenue des galères , numéro de téléphone 0187234565,
                     adresse e-mail : contact@groupomania.com.
@@ -20,28 +29,28 @@
                 </p>
             </article>
             <article class="mr-2 ml-2 mt-2">
-                <h4 class="text-info">ARTICLE 2:L'HEBERGEUR</h4>
+                <h4 class="text-dark">ARTICLE 2:L'HEBERGEUR</h4>
                 <P>
                 L'hébergeur du site Groupomania.com est la Société SuperHeberg, dont le siège social est situé au LOS ANGELES , avec le numéro
                 de téléphone : 09.56.76.34.34.
                 </P>
             </article>
             <article class="mr-2 ml-2 mt-2">
-                <h4 class="text-info">ARTICLE 3: ACCES AU SITE</h4>
+                <h4 class="text-dark">ARTICLE 3: ACCES AU SITE</h4>
                 <p>Le site est accessible par tout endroit, 7j/7, 24h/24 sauf cas de force majeure, interruption programmée ou non et pouvant
                     découlant d’une nécessité de maintenance.
                     En cas de modification, interruption ou suspension des services le site Groupomania.com ne saurait être tenu responsable
                 </p>
             </article>
             <article class="mr-2 ml-2 mt-2">
-                <h4 class="text-info">ARTICLE 4: COLLECTE DE DONNEES</h4>
+                <h4 class="text-dark">ARTICLE 4: COLLECTE DE DONNEES</h4>
                 <p>
                     Le site est exempté de déclaration à la Commission Nationale Informatique et Libertés (CNIL) dans la mesure où il ne collecte
                     aucune donnée concernant les utilisateurs.
                 </p>
             </article>
             <article class="mr-2 ml-2 mt-2">
-                <h4 class="text-info">ARTICLE 5: COOKIES</h4>
+                <h4 class="text-dark">ARTICLE 5: COOKIES</h4>
                 <p>L’Utilisateur est informé que lors de ses visites sur le site, un cookie peut s’installer automatiquement sur son logiciel de
                     navigation.
                     En naviguant sur le site, il les accepte.
@@ -51,22 +60,15 @@
                 </p>
             </article>
             <article class="mr-2 ml-2 mt-2">
-                <h4 class="text-info">ARTICLE 6: PROPRIETE INTELLECTUELLE</h4>
+                <h4 class="text-dark">ARTICLE 6: PROPRIETE INTELLECTUELLE</h4>
                 <p>Toute utilisation, reproduction, diffusion, commercialisation, modification de toute ou partie du site Groupomania.com, sans
                     autorisation de l’Editeur est prohibée et pourra entraînée des actions et poursuites judiciaires telles que notamment prévues par
                     le Code de la propriété intellectuelle et le Code civil.
                     Pour plus d’informations, se reporter aux CGU du site Groupomania.com accessible à la rubrique« CGU »
                 </p>
-            </article>
-            <router-link :to="`/`">
-                <button 
-                    type="button" 
-                    class="btn btn-outline-info btn-sm mb-3 mt-3 mr-2 edit__btn">
-                    revenir à l'accueil
-                </button>
-            </router-link>            
-        </div>
-    </div> 
+            </article>           
+        </section>
+    </main> 
 </template>
 
 <script>

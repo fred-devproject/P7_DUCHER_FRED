@@ -1,18 +1,18 @@
 <template>
-    <div id:="main-content" class="row justify-content-center"> 
-        <div class="card col-md-8 ml-4 mr-4 bg-light main" >
-            <h3 class="main__title text-info text-center mt-4 font-weight-normal">Les messages !</h3>  
+    <main id:="main-content" class="row justify-content-center no-gutters"> 
+        <section class="card col-md-8 bg-light main ml-2" >
+            <h3 class="main__title text-dark text-center mt-4 font-weight-normal">Les messages !</h3>  
             <hr>      
-            <div class="d-flex justify-content-end mr-3">            
+            <nav class="d-flex justify-content-end">            
             <router-link :to="`/newpost`">
-                <button class="btn btn-success main__postbtn mt-3 mr-4" v-if="user.token != null">Poster</button>
+                <button class="btn btn-success main__postbtn mt-3 mb-3 mr-3" v-if="user.token != null">Poster un message</button>
             </router-link> 
-            </div>           
-            <div >
+            </nav>           
+            <section >
                 <ul>                
                     <li v-bind:key="index" v-for="(post, index) in lastPost" class="main__post">
                         <router-link :to="`/post/${post.id}`">
-                            <div class="card mb-4">
+                            <article class="card mb-4 ml-3 mr-3">
                                 <h4 class=" ml-3 mr-2 mb-1 mt-3 ">{{ post.title }}</h4>
                                 <hr>
                                 <div class="d-flex">
@@ -21,13 +21,13 @@
                                 </div>
                                 <hr>
                                 <p class="ml-3 mr-2 mb-2 mt-2">{{ post.content.slice(0, 100) }}...</p>
-                            </div>
+                            </article>
                         </router-link>
                     </li>                
                 </ul>
-            </div>         
-        </div>
-    </div>
+            </section>         
+        </section>
+    </main>
 </template>
 
 <script>

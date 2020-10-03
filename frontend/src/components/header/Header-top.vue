@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid head__style">
-        <navbar></navbar>                
-        <img  class="img-responsive head__banner" src="../../assets/banner.png" alt="">
+    <div class="container-fluid head__style no-padding">
+        <navbar></navbar>               
+        <img  class="img-responsive head__banner" src="../../assets/banner.png" alt="image d'en tête">
         <welcomebar></welcomebar>                      
     </div>
 </template>
