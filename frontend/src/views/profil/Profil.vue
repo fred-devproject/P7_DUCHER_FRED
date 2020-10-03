@@ -14,11 +14,12 @@
             
             <div v-if="user.isadmin==true" class="alert alert-info w-75 m-auto">Vous disposez de droits administrateur</div>
             <hr/>
-            <h5 class="mt-3 text-dark">Votre nom d'utilisateur:</h5>
-            <p class="alert alert-info border-info m-auto">{{user.username}}</p>
-            <h5 class="mt-3 text-dark">Votre email:</h5> 
-            <p class="alert alert-info border-info m-auto">{{ user.email }}</p>
-            
+            <div class="pl-4 pr-4">
+                <h5 class="mt-3 text-dark">Votre nom d'utilisateur:</h5>
+                <p class="alert alert-info col-md-6 m-auto border-info">{{user.username}}</p>
+                <h5 class="mt-3 text-dark">Votre email:</h5> 
+                <p class="alert alert-info col-md-6 m-auto border-info">{{ user.email }}</p>
+            </div>
             <div class="text-center">
                 <button class="btn btn-success btn-md mb-4 mt-4" data-toggle="collapse" href="#changePwdCollapse" role="button" aria-expanded="false" aria-controls="changePwdCollapse">Changer de mot de passe</button>
             </div>
