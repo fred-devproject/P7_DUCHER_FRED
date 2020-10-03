@@ -1,11 +1,11 @@
 <template>
     
-<nav class="navbar navbar-expand-lg navbar-light bg-light row no-padding border fixed-top ">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark row">
   <router-link :to="`/`">
-    <img src="../../assets/logo_black.png" alt="Logo en tête" class="navbar__logo ml-3 mr-5">
-  </router-link>
+    <img src="../../assets/logo_black.png" alt="Logo groupomania" class="navbar__logo ml-3 mr-5">
+  </router-link> 
   <button 
-    class="navbar-toggler mr-4" 
+    class="navbar-toggler mr-4 navbar-dark" 
     type="button" 
     data-toggle="collapse" 
     data-target="#navbarNav" 
@@ -14,31 +14,32 @@
     aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+  <nav class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       
       <router-link :to="`/login`">
         <li class="nav-item mr-5" v-if="user.token == null">
-          <a class="nav-link text-info navbar__text">Connection</a>
+          <a class="nav-link text-light navbar__text" aria-label="connexion">Connexion</a>
         </li>
       </router-link>
       <router-link :to="`/signup`">
         <li class="nav-item mr-5" v-if="user.token == null">
-          <a class="nav-link text-info navbar__text">Inscription</a>
+          <a class="nav-link text-light navbar__text" aria-label="inscription">Inscription</a>
         </li>
       </router-link>
 
       <router-link :to="`/profil`">
-        <li class="nav-item mr-5" v-if="user.token != null">
-          <a class="nav-link ml-3 text-info navbar__text">Mon profil</a>
+        <li class="nav-item mr-5" v-if="user.token != null">          
+          <a class="nav-link ml-3 text-light navbar__text" aria-label="profil utilisateur">Mon profil</a>                
         </li>
       </router-link>
+      
       <li class="nav-item mr-5" v-if="user.token != null" @click.prevent="disconnect">
-          <a class="nav-link ml-3 text-info navbar__text" href="#">Quitter</a>
+          <a class="nav-link ml-3 text-light navbar__text" aria-label="deconnexion" href="#">Deconnexion</a>
       </li>
             
     </ul>
-  </div>
+  </nav>
 </nav>
 </template>
 

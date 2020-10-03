@@ -1,6 +1,8 @@
 <template>
+    <div class="row  justify-content-center">
         <p class="mt-3 mb-3 text-center text-secondary welcomemsg" v-if="user.token != null">Bienvenue <b>{{ user.username }}</b> </p>
-        <p class="mt-3 mb-3 text-center text-secondary welcomemsg" v-else>Bienvenue sur notre nouvelle application<br><i>"Pour participer connectez vous ou créer un compte"</i></p>                    
+        <p class="mt-3 mb-3 text-center text-secondary welcomemsg" v-else>Bienvenue sur notre nouvelle application<br><i>"Pour participer connectez vous ou créer un compte"</i></p>
+    </div>                    
 </template>
 
 <script>

@@ -1,29 +1,29 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="col-md-8 mb- 3 btn__bloc justify-content-left">
+    <main class="row justify-content-center no-gutters">
+        <nav class="col-md-8 mb- 3 btn__bloc justify-content-left">
             <router-link :to="`/`">
                 <button 
                     type="button" 
-                    class="btn btn-outline-info btn-sm mb-3 mt-3 ml-2 edit__btn">
+                    class="btn btn-outline-dark btn-md mb-3 mt-3 ml-2 edit__btn">
                     revenir à l'accueil
                 </button>
             </router-link>
-        </div>
-        <div class="card col-md-8 bg-light text-center profil__box ml-4 mr-4 mb-5">
-            <h3 class="text-info mt-3 mb-3">Votre profil</h3>
+        </nav>
+        <section class="card col-md-8 bg-light text-center profil__box ml-4 mr-4 mb-5">
+            <h3 class="text-dark mt-3 mb-3">Votre profil</h3>
             
             <div v-if="user.isadmin==true" class="alert alert-info w-75 m-auto">Vous disposez de droits administrateur</div>
             <hr/>
-            <h5 class="mt-3 text-info">Votre nom d'utilisateur:</h5>
-            <p class="alert alert-secondary w-75 m-auto">{{user.username}}</p>
-            <h5 class="mt-3 text-info">Votre email:</h5> 
-            <p class="alert alert-secondary w-75 m-auto">{{ user.email }}</p>
+            <h5 class="mt-3 text-dark">Votre nom d'utilisateur:</h5>
+            <p class="alert alert-info border-info m-auto">{{user.username}}</p>
+            <h5 class="mt-3 text-dark">Votre email:</h5> 
+            <p class="alert alert-info border-info m-auto">{{ user.email }}</p>
             
             <div class="text-center">
-                <button class="btn btn-success btn-sm mb-4 mt-4" data-toggle="collapse" href="#changePwdCollapse" role="button" aria-expanded="false" aria-controls="changePwdCollapse">Changer de mot de passe</button>
+                <button class="btn btn-success btn-md mb-4 mt-4" data-toggle="collapse" href="#changePwdCollapse" role="button" aria-expanded="false" aria-controls="changePwdCollapse">Changer de mot de passe</button>
             </div>
             <div class="collapse  w-75 m-auto" id="changePwdCollapse">
-            <div class="card card-body bg-light">
+            <section class="card card-body bg-light">
                 <form>
                     <div class="form-group">
                         <label for="newPassword"><b>Saisissez votre nouveau mot de passe</b></label>
@@ -35,22 +35,23 @@
                     </div>
                     <p class="alert alert-info w-75 mr-auto ml-auto mt-3"><b>Votre mot de passe doit contenir:</b><br><i>1 majuscule, 1 minuscule, 1 chiffre ou 1 caractère spécial</i></p>                    
                     <button type="submit" class="btn btn-sm btn-success" v-on:click.prevent="changePassword">Sauvegarder les modifications</button>
-                    <p class="alert alert-success w-75 mr-auto ml-auto mt-3" v-if="successMsg">Mot de passe modifié avec succès</p>
+                    <p class="alert alert-success w-75 mr-auto ml-auto mt-3" v-if="successMsg">Mot de passe modifié avec succès
+                        
+                    </p>
                     <p class="alert alert-danger w-75 mr-auto ml-auto mt-3" v-if="failMsg">Veuillez vérifier votre saisie</p>
                 </form>
-            </div>
+            </section>
             </div>          
             <div class="text-center">
-                <button class="btn btn-danger btn-sm mb-3 mt-3 " data-toggle="collapse" href="#deleteProfilCollapse" role="button" aria-expanded="false" aria-controls="deleteProfilCollapse">Supprimer mon compte</button>
+                <button class="btn btn-danger btn-md mb-3 mt-3 " data-toggle="collapse" href="#deleteProfilCollapse" role="button" aria-expanded="false" aria-controls="deleteProfilCollapse">Supprimer mon compte</button>
             </div>
             <div class="collapse  w-75 m-auto" id="deleteProfilCollapse">
                 <p class="alert alert-danger w-75 mr-auto ml-auto"><b>Etes vous sur de vouloir supprimer votre compte ?</b><br>
                 <button class="btn btn-danger btn-sm mb-3 mt-3" v-on:click.prevent="deleteUser()">Confirmer</button>
                 </p>    
             </div>           
-        </div>
-        
-    </div>
+        </section>        
+    </main>
 </template>
 
 <script>

@@ -18,15 +18,12 @@ a:hover {
 }
 
 .main {
-    padding: 0;
+    
     margin-bottom: 15vh;
 }
 
 
-.main__post {
-    margin:20px 40px 20px 40px
-        
-};
+
 
 
 .main__posttitle {
